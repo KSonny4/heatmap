@@ -100,10 +100,15 @@ void loop() {
         dtostrf(humidity, 2, 1, humidity_string);
 
         // sensor to be of co2
-        int co2 = 9999; // TODO measure
+        int co2 = 9999;
 
-        char concatenated_string[25];
-        sprintf(concatenated_string, "%s %s %d", temperature_string, humidity_string, co2);
+        // sensor to be of noise
+        int noise = 9999;
+
+        char concatenated_string[31];
+        // t=%s & h=%s  &  c=%d &   n=%s
+        // 2+5 +1 +2+5 +1 +2+5+ 1 + 2 + 5 => 31
+        sprintf(concatenated_string, "t=%s&h=%s&c=%d&n=%s", temperature_string, humidity_string, co2, noise);
 
         Serial.print("Sending: ");
         Serial.println(concatenated_string);
